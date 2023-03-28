@@ -6,7 +6,39 @@
              xmlns:local="clr-namespace:LanAttacks.Views"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="824">
-    <Grid Background="MediumPurple">
-        <TextBlock FontSize="40">ICMP Flooding</TextBlock>
+    <Grid Background="#252836">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="White" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0">ICMP Flooding</TextBlock>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center"  >
+            <Label Foreground="White" FontSize="24" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="412">Number of packets to send</Label>
+            <TextBox FontSize="24" Width="100" Height="30" Margin="40,0,0,0" Text="10" InputScope="Number" FlowDirection="RightToLeft" Name="AmountOfPackets" LostFocus="AmountInput_LostFocus"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Top"  >
+            <Label Foreground="White" FontSize="24" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="412">Destination IP Adress</Label>
+            <StackPanel Width="412" Orientation="Horizontal" Margin="40,0,0,0">
+                <TextBox  FontSize="24" Height="30" Width="60" PreviewTextInput="NumberValidationTextBox" FlowDirection="RightToLeft" LostFocus="IpInputLostFocus" Name="DstFirstOctet" Text="0"/>
+                <Label Foreground="White" FontSize="24"  Width="16">.</Label>
+                <TextBox  FontSize="24" Width="60" Height="30" PreviewTextInput="NumberValidationTextBox" FlowDirection="RightToLeft" LostFocus="IpInputLostFocus" Name="DstSecondOctet" Text="0"/>
+                <Label Foreground="White" FontSize="24"  Width="16">.</Label>
+                <TextBox  FontSize="24" Width="60" Height="30" PreviewTextInput="NumberValidationTextBox" FlowDirection="RightToLeft" LostFocus="IpInputLostFocus" Name="DstThirdOctet" Text="0"/>
+                <Label Foreground="White" FontSize="24"  Width="16" >.</Label>
+                <TextBox  FontSize="24" Width="60" Height="30" PreviewTextInput="NumberValidationTextBox" FlowDirection="RightToLeft" LostFocus="IpInputLostFocus" Name="DstFourthOctet" Text="0"/>
+            </StackPanel>
+        </StackPanel>
+        <Button Grid.Column="0" Grid.ColumnSpan="2" Content="Start ICMP Flooding" HorizontalAlignment="Center" Grid.Row="3" Padding="10,5,10,5" FontSize="20" VerticalAlignment="Top" Click="ICMPSubmit_Clicked" Margin="0,-20,0,0"/>
+        <ScrollViewer Grid.Row="4" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="30,-40,30,30" Background="Black">
+            <Label Foreground="White" FontSize="16" Name="ResultLabel"></Label>
+        </ScrollViewer>
     </Grid>
 </UserControl>
