@@ -12,16 +12,16 @@
             <Grid HorizontalAlignment="Center" Height="786" Width="824">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
-                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition />
+                    <RowDefinition Height="100" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Button FontSize="32" Grid.Row="0" Grid.Column="0" Content="Spoofing" Height="300" Width="300" Cursor="Hand" />
-                <Button FontSize="32" Grid.Row="0" Grid.Column="1" Content="Sniffing" Height="300" Width="300" Cursor="Hand" />
-                <Button FontSize="32" Grid.Row="1" Grid.Column="0" Content="ICMP Flooding" Height="300" Width="300" Cursor="Hand" />
-                <Button FontSize="32" Grid.Row="1" Grid.Column="1" Content="RANDOM" Height="300" Width="300" Cursor="Hand" />
+                <Label Foreground="White" FontSize="48" HorizontalAlignment="Center" Grid.Row="0" Width="138">Home</Label>
+                <TextBlock  Foreground="White" FontSize="24" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="30,0,30,0">Welcome to LanAttacks! LanAttacks is a pentesting software that allows you to test your Local Area Network. There are 3 different types of attacks:</TextBlock>
+                <TextBlock  Foreground="White" FontSize="24" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="40,110,40,0">Spoofing -  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec adipiscing nulla quis libero egestas lobortis. Duis blandit imperdiet ornare. Nulla ac arcu ut purus placerat congue. Integer pretium fermentum.</TextBlock>
+                <TextBlock  Foreground="White" FontSize="24" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="40,250,40,0">Sniffing -  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec adipiscing nulla quis libero egestas lobortis. Duis blandit imperdiet ornare. Nulla ac arcu ut purus placerat congue. Integer pretium fermentum gravida.</TextBlock>
+                <TextBlock  Foreground="White" FontSize="24" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="40,400,40,0">ICMP Flooding -  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec adipiscing nulla quis libero egestas lobortis. Duis blandit imperdiet ornare. Nulla ac arcu ut purus placerat congue. Integer pretium fermentum gravida.</TextBlock>
             </Grid>
         </StackPanel>
     </Grid>

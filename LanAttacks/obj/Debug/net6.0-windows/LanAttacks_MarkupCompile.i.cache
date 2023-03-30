@@ -16,5 +16,5 @@ E:\Studia\ProjektowanieSystemowCybernetycznoFizycznych\Projekt\pcf-proj\LanAttac
 194-1617825143
 MainWindow.xaml;Styles.xaml;Views\HomeView.xaml;Views\ICMPFloodingView.xaml;Views\SniffingView.xaml;Views\SpoofingView.xaml;
 
-True
+False
 
