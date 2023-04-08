@@ -1,8 +1,8 @@
 ﻿
 
-FE:\Studia\ProjektowanieSystemowCybernetycznoFizycznych\Projekt\pcf-proj\LanAttacks\MainWindow.xaml;;
-FE:\Studia\ProjektowanieSystemowCybernetycznoFizycznych\Projekt\pcf-proj\LanAttacks\Views\HomeView.xaml;;
-FE:\Studia\ProjektowanieSystemowCybernetycznoFizycznych\Projekt\pcf-proj\LanAttacks\Views\ICMPFloodingView.xaml;;
-FE:\Studia\ProjektowanieSystemowCybernetycznoFizycznych\Projekt\pcf-proj\LanAttacks\Views\SniffingView.xaml;;
-FE:\Studia\ProjektowanieSystemowCybernetycznoFizycznych\Projekt\pcf-proj\LanAttacks\Views\SpoofingView.xaml;;
+FK:\pcf-proj\LanAttacks\MainWindow.xaml;;
+FK:\pcf-proj\LanAttacks\Views\HomeView.xaml;;
+FK:\pcf-proj\LanAttacks\Views\ICMPFloodingView.xaml;;
+FK:\pcf-proj\LanAttacks\Views\SniffingView.xaml;;
+FK:\pcf-proj\LanAttacks\Views\SpoofingView.xaml;;
 

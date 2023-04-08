@@ -8,5 +8,7 @@ namespace LanAttacks.ViewModels
 {
     public class HomeViewModel
     {
+       
     }
 }
+
