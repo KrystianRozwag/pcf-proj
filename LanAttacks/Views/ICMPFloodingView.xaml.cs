@@ -57,10 +57,6 @@ namespace LanAttacks.Views
                 dynamic result = collections.whole_func();
                 //ResultLabel.Content = ResultLabel.Content + result;
                 Console.WriteLine(result);
-                //ResultLabel.Content = result;
-                // Create a PyDict object from the dictionary
-                //PyDict pyDictResult = new PyDict(dictResult);
-                //PyDict dictResult = new PyDict(result);
                 foreach (dynamic key in result.keys())
                 {
                     ResultLabel.Content = ResultLabel.Content+"\n" + key +":"+result[key];
