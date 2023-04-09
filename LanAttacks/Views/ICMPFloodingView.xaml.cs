@@ -1,9 +1,13 @@
 ﻿using Python.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
+using System.Net.Sockets;
+using System.Printing;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace LanAttacks.Views
@@ -41,26 +45,29 @@ namespace LanAttacks.Views
 
             string dstIpAddress = formattedDstFirstOctet + "." + formattedDstSecondOctet + "." + formattedDstThirdOctet + "." + formattedDstFourthOctet;
 
-            ResultLabel.Content = $"ICMP Flooding on the {dstIpAddress} with {formattedAmountOfPackets} packets.";
+            //ResultLabel.Content = $"ICMP Flooding on the {dstIpAddress} with {formattedAmountOfPackets} packets.";
+            PythonEngine.Initialize();
             using (Py.GIL())
             {
+
                 dynamic np = Py.Import("numpy");
-                ResultLabel.Content = ResultLabel.Content +"\n"+ np.cos(np.pi * 2);
+                dynamic scapy = Py.Import("scapy");
 
-                dynamic sin = np.sin;
-                ResultLabel.Content = ResultLabel.Content + "\n" + sin(5);
+                dynamic collections = Py.Import("my_module");
+                dynamic result = collections.whole_func();
+                //ResultLabel.Content = ResultLabel.Content + result;
+                Console.WriteLine(result);
+                //ResultLabel.Content = result;
+                // Create a PyDict object from the dictionary
+                //PyDict pyDictResult = new PyDict(dictResult);
+                //PyDict dictResult = new PyDict(result);
+                foreach (dynamic key in result.keys())
+                {
+                    ResultLabel.Content = ResultLabel.Content+"\n" + key +":"+result[key];
+                }
 
-                double c = (double)(np.cos(5) + sin(5));
-                ResultLabel.Content = ResultLabel.Content + "\n" + c;
-
-                dynamic a = np.array(new List<float> { 1, 2, 3 });
-                ResultLabel.Content = ResultLabel.Content + "\n" + a.dtype;
-
-                dynamic b = np.array(new List<float> { 6, 5, 4 }, dtype: np.int32);
-                ResultLabel.Content = ResultLabel.Content + "\n" +  b.dtype;
-
-                ResultLabel.Content = ResultLabel.Content + "\n" + a * b;
             }
+            PythonEngine.Shutdown();
         }
 
         private void IpInputLostFocus(object sender, RoutedEventArgs e)
