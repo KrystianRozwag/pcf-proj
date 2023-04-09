@@ -1,4 +1,5 @@
 ﻿//using LanAttacks.ViewModels;
+using Python.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,14 @@ namespace LanAttacks.Views
         public HomeView()
         {
             InitializeComponent();
+            Runtime.PythonDLL = @"C:\Users\kryst\AppData\Local\Programs\Python\Python310\python310.dll";
+            //string EnvPath = @"C:\Users\kryst\AppData\Local\Programs\Python\Python310";
+            //string pythonPath = @"C:\Users\kryst\AppData\Local\Programs\Python\Python310\Lib\site-packages\pythonnet";
+            //Environment.SetEnvironmentVariable("PATH", EnvPath, EnvironmentVariableTarget.Process);
+            //Environment.SetEnvironmentVariable("PYTHONHOME", EnvPath, EnvironmentVariableTarget.Process);
+            //Environment.SetEnvironmentVariable("PYTHONPATH", pythonPath, EnvironmentVariableTarget.Process);
+            //PythonEngine.PythonHome = Environment.GetEnvironmentVariable("PYTHONHOME", EnvironmentVariableTarget.Process);
+            //PythonEngine.PythonPath = Environment.GetEnvironmentVariable("PYTHONPATH", EnvironmentVariableTarget.Process);
         }
     }
 }
