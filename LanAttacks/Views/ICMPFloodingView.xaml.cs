@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Net.Sockets;
 using System.Printing;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-
+using System.IO;
 namespace LanAttacks.Views
 {
     public partial class ICMPFloodingView : UserControl
@@ -18,7 +19,26 @@ namespace LanAttacks.Views
         {
             InitializeComponent();
             PythonEngine.Initialize();
-           
+            string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string newPath = "";
+            using (Py.GIL())
+            {
+                dynamic separatedString = assemblyPath.Split("\\");
+                foreach (dynamic pathItem in separatedString)
+                {
+                    newPath = newPath + pathItem + "\\";
+                    if (pathItem == "LanAttacks")
+                    {
+                        newPath = newPath + "PythonModules";
+                        break;
+                    }
+                }
+                dynamic sys = Py.Import("sys");
+                sys.path.append(newPath);
+
+            }
+            PythonEngine.Shutdown();
+
         }
 
         private void AmountInput_LostFocus(object sender, RoutedEventArgs e)
@@ -45,14 +65,13 @@ namespace LanAttacks.Views
 
             string dstIpAddress = formattedDstFirstOctet + "." + formattedDstSecondOctet + "." + formattedDstThirdOctet + "." + formattedDstFourthOctet;
 
+
+            // Set the module search path for pythonnet to include the directory of the executing assembly
+            
             //ResultLabel.Content = $"ICMP Flooding on the {dstIpAddress} with {formattedAmountOfPackets} packets.";
             PythonEngine.Initialize();
             using (Py.GIL())
             {
-
-                dynamic np = Py.Import("numpy");
-                dynamic scapy = Py.Import("scapy");
-
                 dynamic collections = Py.Import("my_module");
                 dynamic result = collections.whole_func();
                 //ResultLabel.Content = ResultLabel.Content + result;
