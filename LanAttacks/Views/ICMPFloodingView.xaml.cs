@@ -72,10 +72,8 @@ namespace LanAttacks.Views
             PythonEngine.Initialize();
             using (Py.GIL())
             {
-                dynamic collections = Py.Import("my_module");
-                dynamic result = collections.whole_func();
-                //ResultLabel.Content = ResultLabel.Content + result;
-                Console.WriteLine(result);
+                dynamic collections = Py.Import("SniffingModule");
+                dynamic result = collections.do_sniffing();
                 foreach (dynamic key in result.keys())
                 {
                     ResultLabel.Content = ResultLabel.Content+"\n" + key +":"+result[key];
