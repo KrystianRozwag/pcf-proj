@@ -11,34 +11,15 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.IO;
+using LanAttacks.ViewModels;
 namespace LanAttacks.Views
 {
     public partial class ICMPFloodingView : UserControl
     {
+
         public ICMPFloodingView()
         {
             InitializeComponent();
-            PythonEngine.Initialize();
-            string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string newPath = "";
-            using (Py.GIL())
-            {
-                dynamic separatedString = assemblyPath.Split("\\");
-                foreach (dynamic pathItem in separatedString)
-                {
-                    newPath = newPath + pathItem + "\\";
-                    if (pathItem == "LanAttacks")
-                    {
-                        newPath = newPath + "PythonModules";
-                        break;
-                    }
-                }
-                dynamic sys = Py.Import("sys");
-                sys.path.append(newPath);
-
-            }
-            PythonEngine.Shutdown();
-
         }
 
         private void AmountInput_LostFocus(object sender, RoutedEventArgs e)
