@@ -12,7 +12,7 @@ def custom_action(packet):
 packet_counts = Counter()
 
 ## Define our Custom Action function
-def whole_func():   
+def do_sniffing():   
 
 ## Setup sniff, filtering for IP traffic
     sniff(filter="ip", prn=custom_action, count=10)
