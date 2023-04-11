@@ -12,10 +12,10 @@ def custom_action(packet):
 packet_counts = Counter()
 
 ## Define our Custom Action function
-def do_sniffing():   
+def do_sniffing(filterValue, interfaceValue, countValue):   
 
 ## Setup sniff, filtering for IP traffic
-    sniff(filter="ip", prn=custom_action, count=10)
+    sniff(iface=interfaceValue, filter=filterValue, prn=custom_action, count=countValue)
 
 ## Print out packet count per A <--> Z address pair
     print("\n".join(f"{f'{key[0]} <--> {key[1]}'}: {count}" for key, count in packet_counts.items()))

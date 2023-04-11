@@ -54,7 +54,7 @@ namespace LanAttacks.Views
             using (Py.GIL())
             {
                 dynamic collections = Py.Import("SniffingModule");
-                dynamic result = collections.do_sniffing();
+                dynamic result = collections.do_sniffing("icmp", "eth0", int.Parse(formattedAmountOfPackets));
                 foreach (dynamic key in result.keys())
                 {
                     ResultLabel.Content = ResultLabel.Content+"\n" + key +":"+result[key];

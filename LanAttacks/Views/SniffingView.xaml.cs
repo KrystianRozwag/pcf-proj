@@ -1,4 +1,5 @@
-﻿using System.Net.NetworkInformation;
+﻿using Python.Runtime;
+using System.Net.NetworkInformation;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -35,11 +36,27 @@ namespace LanAttacks.Views
         private void SniffingSubmit_Clicked(object sender, RoutedEventArgs e)
         {
             string formattedAmountOfPackets = AmountOfPackets.Text.Trim() != "" ? AmountOfPackets.Text : "1";
+            string formattedInterface = networkInterfaceComboBox.Text;
+            
+
             string formattedFilterPackets = FilterPackets.Text.Trim().ToUpper();
 
             if (formattedAmountOfPackets == "1") AmountOfPackets.Text = "1";
 
-            ResultLabel.Content = $"Sniffing {formattedAmountOfPackets} packets on '{networkInterfaceComboBox.Text}' with '{formattedFilterPackets}' filter ";
+            //ResultLabel.Content = $"Sniffing {formattedAmountOfPackets} packets on '{networkInterfaceComboBox.Text}' with '{formattedFilterPackets}' filter ";
+
+            PythonEngine.Initialize();
+            using (Py.GIL())
+            {
+                dynamic collections = Py.Import("SniffingModule");
+                dynamic result = collections.do_sniffing(formattedFilterPackets.ToLower(), formattedInterface, int.Parse(formattedAmountOfPackets));
+                foreach (dynamic key in result.keys())
+                {
+                    ResultLabel.Content = ResultLabel.Content + "\n" + key + ":" + result[key];
+                }
+
+            }
+            PythonEngine.Shutdown();
         }
     }
 }
