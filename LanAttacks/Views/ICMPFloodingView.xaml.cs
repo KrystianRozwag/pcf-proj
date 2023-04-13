@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Net.Sockets;
+using System.Net;
 using System.Printing;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -44,6 +45,18 @@ namespace LanAttacks.Views
 
             if (formattedAmountOfPackets == "1") AmountOfPackets.Text = "1";
 
+            string hostName = Dns.GetHostName();
+            IPHostEntry host = Dns.GetHostEntry(hostName);
+            string srcIpAddress = string.Empty;
+            foreach (IPAddress address in host.AddressList)
+            {
+                if(address.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    srcIpAddress = address.ToString();
+                    break;
+                }
+            }
+
             string dstIpAddress = formattedDstFirstOctet + "." + formattedDstSecondOctet + "." + formattedDstThirdOctet + "." + formattedDstFourthOctet;
 
 
@@ -53,11 +66,11 @@ namespace LanAttacks.Views
             PythonEngine.Initialize();
             using (Py.GIL())
             {
-                dynamic collections = Py.Import("SniffingModule");
-                dynamic result = collections.do_sniffing("icmp", "eth0", int.Parse(formattedAmountOfPackets));
+                dynamic collections = Py.Import("SpoofingModule");
+                dynamic result = collections.spoof("192.168.1.11", dstIpAddress, "ICMP", AmountOfPackets);
                 foreach (dynamic key in result.keys())
                 {
-                    ResultLabel.Content = ResultLabel.Content+"\n" + key +":"+result[key];
+                    ResultLabel.Content = ResultLabel.Content + "\n" + key + ":" + result[key];
                 }
 
             }

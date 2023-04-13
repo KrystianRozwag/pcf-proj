@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Python.Runtime;
+using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -66,7 +67,19 @@ namespace LanAttacks.Views
             string srcIpAddress = formattedSrcFirstOctet + "." + formattedSrcSecondOctet + "." + formattedSrcThirdOctet + "." + formattedSrcFourthOctet;
             string dstIpAddress = formattedDstFirstOctet + "." + formattedDstSecondOctet + "." + formattedDstThirdOctet + "." + formattedDstFourthOctet;
 
-            ResultLabel.Content = $"Spoofing {Protocol.Text} protocol from {srcIpAddress} to {dstIpAddress} with {formattedAmountOfPackets} packets.";
+            //ResultLabel.Content = $"Spoofing {Protocol.Text} protocol from {srcIpAddress} to {dstIpAddress} with {formattedAmountOfPackets} packets.";
+            PythonEngine.Initialize();
+            using (Py.GIL())
+            {
+                dynamic collections = Py.Import("SpoofingModule");
+                dynamic result = collections.spoof(srcIpAddress, dstIpAddress, Protocol.Text.ToUpper(), AmountOfPackets);
+                foreach (dynamic key in result.keys())
+                {
+                    ResultLabel.Content = ResultLabel.Content + "\n" + key + ":" + result[key];
+                }
+
+            }
+            PythonEngine.Shutdown();
         }
     }
 }
