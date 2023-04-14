@@ -50,9 +50,16 @@ namespace LanAttacks.Views
             {
                 dynamic collections = Py.Import("SniffingModule");
                 dynamic result = collections.do_sniffing(formattedFilterPackets.ToLower(), formattedInterface, int.Parse(formattedAmountOfPackets));
-                foreach (dynamic key in result.keys())
+                if (result != null)
                 {
-                    ResultLabel.Content = ResultLabel.Content + "\n" + key + ":" + result[key];
+                    foreach (dynamic key in result.keys())
+                    {
+                        ResultLabel.Content = ResultLabel.Content + "\n" + key + ":" + result[key];
+                    }
+                }
+                else
+                {
+                    ResultLabel.Content = "This dst host does not exist.";
                 }
 
             }
