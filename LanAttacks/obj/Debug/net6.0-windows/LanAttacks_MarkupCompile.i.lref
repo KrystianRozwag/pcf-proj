@@ -1,4 +1,8 @@
-﻿
+﻿K:\pcf-proj\LanAttacks\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.i.cs
 
-FF:\Github\JAProjekt\pcf-proj\LanAttacks\Views\SpoofingView.xaml;;
+FK:\pcf-proj\LanAttacks\MainWindow.xaml;;
+FK:\pcf-proj\LanAttacks\Views\HomeView.xaml;;
+FK:\pcf-proj\LanAttacks\Views\ICMPFloodingView.xaml;;
+FK:\pcf-proj\LanAttacks\Views\SniffingView.xaml;;
+FK:\pcf-proj\LanAttacks\Views\SpoofingView.xaml;;
 

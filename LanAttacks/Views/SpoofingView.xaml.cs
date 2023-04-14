@@ -73,10 +73,18 @@ namespace LanAttacks.Views
             {
                 dynamic collections = Py.Import("SpoofingModule");
                 dynamic result = collections.spoof(srcIpAddress, dstIpAddress, Protocol.Text.ToUpper(), AmountOfPackets);
-                foreach (dynamic key in result.keys())
+                if(result != null)
                 {
-                    ResultLabel.Content = ResultLabel.Content + "\n" + key + ":" + result[key];
+                    foreach (dynamic key in result.keys())
+                    {
+                        ResultLabel.Content = ResultLabel.Content + "\n" + key + ":" + result[key];
+                    }
                 }
+                else
+                {
+                    ResultLabel.Content = "This destination host does not exist.";
+                }
+                
 
             }
             PythonEngine.Shutdown();

@@ -68,10 +68,17 @@ namespace LanAttacks.Views
             {
                 dynamic collections = Py.Import("SpoofingModule");
                 dynamic result = collections.spoof("192.168.1.11", dstIpAddress, "ICMP", AmountOfPackets);
-                foreach (dynamic key in result.keys())
-                {
-                    ResultLabel.Content = ResultLabel.Content + "\n" + key + ":" + result[key];
+                if(result != null) {
+                    foreach (dynamic key in result.keys())
+                    {
+                        ResultLabel.Content = ResultLabel.Content + "\n" + key + ":" + result[key];
+                    }
                 }
+                else
+                {
+                    ResultLabel.Content = "This dst host does not exist.";
+                }
+                
 
             }
             PythonEngine.Shutdown();
