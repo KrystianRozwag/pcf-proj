@@ -10,7 +10,7 @@ def get_mac(ip):
     return answered_list[0][1].hwsrc
 
   
-def spoof(target_ip, spoof_ip, protocol, mac_address, packet_amount):
+def spoof(spoof_ip, target_ip, protocol, mac_address, packet_amount):
     src_port = random.randint(1024, 65535)  
     packet = None 
     try:
