@@ -22,7 +22,7 @@
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="White" FontSize="48" FontFamily="Segoe UI, Verdana" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0">Spoofing</TextBlock>
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Top"  >
             <Label Foreground="White" FontSize="24" FontFamily="Segoe UI, Verdana" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="412">Number of packets to send</Label>
-            <TextBox FontSize="24" Width="100" Height="30" Margin="40,0,0,0" Text="10" InputScope="Number" FlowDirection="RightToLeft" Name="AmountOfPackets" LostFocus="AmountInput_LostFocus"/>
+            <TextBox FontSize="24" Width="100" Height="30" Margin="40,0,0,0" Text="10" InputScope="Number" PreviewTextInput="NumberValidationTextBox" FlowDirection="RightToLeft" Name="AmountOfPackets" LostFocus="AmountInput_LostFocus"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
             <Label Foreground="White" FontSize="24" FontFamily="Segoe UI, Verdana" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="412">Source IP Address</Label>
@@ -48,7 +48,7 @@
                 <TextBox  FontSize="24" Width="60" Height="30" PreviewTextInput="NumberValidationTextBox" FlowDirection="RightToLeft" LostFocus="IpInputLostFocus" Name="DstFourthOctet" Text="0"/>
             </StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Top"  >
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,-8,0,0" >
             <Label Foreground="White" FontSize="24" FontFamily="Segoe UI, Verdana" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Width="412">Protocol</Label>
             <ComboBox FontSize="20" FontFamily="Segoe UI, Verdana" Width="100" Height="30" Margin="40,0,0,0" InputScope="Number" FlowDirection="RightToLeft" Name="Protocol">
                 <ComboBoxItem IsSelected="True">TCP/IP</ComboBoxItem>
@@ -57,7 +57,7 @@
                 <ComboBoxItem>GPS</ComboBoxItem>
             </ComboBox>
         </StackPanel>
-        <Button Grid.Column="0" Grid.ColumnSpan="2" Content="Start Spoofing" HorizontalAlignment="Center" Grid.Row="3" Padding="10,5,10,5" FontSize="20" VerticalAlignment="Top" Click="SpoofingSubmit_Clicked" Margin="0,-20,0,0"/>
+        <Button Grid.Column="0" Grid.ColumnSpan="2" Content="Start Spoofing" HorizontalAlignment="Center" Grid.Row="3" Padding="10,5,10,5" FontSize="20" VerticalAlignment="Top" Click="SpoofingSubmit_Clicked" />
         <ScrollViewer Grid.Row="4" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="30,-40,30,30" Background="Black">
             <Label Foreground="White" FontSize="16" FontFamily="Segoe UI, Verdana" Name="ResultLabel"></Label>
         </ScrollViewer>
