@@ -17,7 +17,14 @@ namespace LanAttacks.Views
         {
             TextBox obj = (TextBox)sender;
 
-            if (obj.Text == "0" || obj.Text == "")
+            if (obj.Text != "")
+            {
+                int number = Int32.Parse(obj.Text);
+                if (number == 0) number = 1;
+
+                obj.Text = number.ToString();
+            }
+            else
             {
                 obj.Text = "1";
             }

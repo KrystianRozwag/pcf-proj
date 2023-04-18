@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LanAttacks.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="824
+             d:DesignHeight="700" d:DesignWidth="824
              ">
     <Grid>
         <StackPanel>
-            <Grid HorizontalAlignment="Center" Height="786" Width="824">
+            <Grid HorizontalAlignment="Center" Height="686" Width="824">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
@@ -17,11 +17,11 @@
                     <RowDefinition Height="100" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Label Foreground="White" FontSize="48" HorizontalAlignment="Center" Grid.Row="0" Width="138">Home</Label>
-                <TextBlock  Foreground="White" FontSize="24" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="30,0,30,0">Welcome to LanAttacks! LanAttacks is a pentesting software that allows you to test your Local Area Network. There are 3 different types of attacks:</TextBlock>
-                <TextBlock  Foreground="White" FontSize="24" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="40,110,40,0">Spoofing -  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec adipiscing nulla quis libero egestas lobortis. Duis blandit imperdiet ornare. Nulla ac arcu ut purus placerat congue. Integer pretium fermentum.</TextBlock>
-                <TextBlock  Foreground="White" FontSize="24" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="40,250,40,0">Sniffing -  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec adipiscing nulla quis libero egestas lobortis. Duis blandit imperdiet ornare. Nulla ac arcu ut purus placerat congue. Integer pretium fermentum gravida.</TextBlock>
-                <TextBlock  Foreground="White" FontSize="24" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="40,400,40,0">ICMP Flooding -  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec adipiscing nulla quis libero egestas lobortis. Duis blandit imperdiet ornare. Nulla ac arcu ut purus placerat congue. Integer pretium fermentum gravida.</TextBlock>
+                <Label Foreground="White" FontSize="48" FontFamily="Segoe UI, Verdana" HorizontalAlignment="Center" Grid.Row="0" Width="138">Home</Label>
+                <TextBlock  Foreground="White" FontSize="22" FontFamily="Segoe UI, Verdana" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="30,0,30,0">Welcome to LanAttacks! LanAttacks is a pentesting software that allows you to test your Local Area Network. There are 3 different types of attacks:</TextBlock>
+                <TextBlock  Foreground="White" FontSize="22" FontFamily="Segoe UI, Verdana" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="40,110,40,0">Spoofing -  it involves falsifying the source addresses of data packets to make it appear that they originate from different addresses than the actual ones. Attackers can use this technique to hide their identity or deceive network security systems.</TextBlock>
+                <TextBlock  Foreground="White" FontSize="22" FontFamily="Segoe UI, Verdana" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="40,250,40,0">Sniffing -  it refers to eavesdropping on network traffic in order to obtain sensitive information such as passwords, usernames, credit card numbers, etc. The attacker uses software to capture data packets transmitted on the network.</TextBlock>
+                <TextBlock  Foreground="White" FontSize="22" FontFamily="Segoe UI, Verdana" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="40,400,40,0">ICMP Flooding -  it involves sending a large number of Internet Control Message Protocol (ICMP) requests to a target device in order to disrupt its operation. Attackers send large amounts of ICMP packets, which can overload the network and cause system instability or failure.</TextBlock>
             </Grid>
         </StackPanel>
     </Grid>

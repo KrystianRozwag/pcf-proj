@@ -7,7 +7,7 @@
         xmlns:viewmodels="clr-namespace:LanAttacks.ViewModels"
         xmlns:views="clr-namespace:LanAttacks.Views"
         mc:Ignorable="d"
-        Title="LAN Attacks" Height="800" Width="1024" ResizeMode="NoResize">
+        Title="LAN Attacks" Height="700" Width="1024" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -30,11 +30,11 @@
     <Grid>
         <Border Background="#1f1d2b" RenderTransformOrigin="0.5,0.5" Margin="0,0,797,0" Width="230">
             <StackPanel Margin="0,0,30,0">
-                <TextBlock Text="LAN Attacks" FontSize="28" Margin="20,40,10,0" Foreground="White" RenderTransformOrigin="0.503,1.834" />
-                <Button Style="{StaticResource MenuBtnStyles}" FontSize="20" Content="Home" Margin="0,200,0,0" Height="50"  Width="200" Click="HomeView_Clicked" />
-                <Button Style="{StaticResource MenuBtnStyles}" FontSize="20" Content="Spoofing" Margin="0,0,0,0" Height="50"  Width="200" Click="SpoofingView_Clicked" />
-                <Button Style="{StaticResource MenuBtnStyles}" FontSize="20" Content="Sniffing" Margin="0,0,0,0" Height="50" Width="200" Click="SniffingView_Clicked" />
-                <Button Style="{StaticResource MenuBtnStyles}" FontSize="20" Content="ICMP Flooding" Margin="0,0,0,0" Height="50" Width="200" Click="ICMPFloodingView_Clicked" />
+                <TextBlock Text="LAN Attacks" FontSize="28" Margin="20,40,10,0" Foreground="White" RenderTransformOrigin="0.503,1.834" FontFamily="Segoe UI, Verdana" />
+                <Button Style="{StaticResource MenuBtnStyles}" FontSize="20" FontFamily="Segoe UI, Verdana" Content="Home" Margin="0,150,0,0" Height="50"  Width="200" Click="HomeView_Clicked" />
+                <Button Style="{StaticResource MenuBtnStyles}" FontSize="20" FontFamily="Segoe UI, Verdana" Content="Spoofing" Margin="0,0,0,0" Height="50"  Width="200" Click="SpoofingView_Clicked" />
+                <Button Style="{StaticResource MenuBtnStyles}" FontSize="20" FontFamily="Segoe UI, Verdana" Content="Sniffing" Margin="0,0,0,0" Height="50" Width="200" Click="SniffingView_Clicked" />
+                <Button Style="{StaticResource MenuBtnStyles}" FontSize="20" FontFamily="Segoe UI, Verdana" Content="ICMP Flooding" Margin="0,0,0,0" Height="50" Width="200" Click="ICMPFloodingView_Clicked" />
             </StackPanel>
         </Border>
         <Border Background="#252836" Margin="200,0,0,0">

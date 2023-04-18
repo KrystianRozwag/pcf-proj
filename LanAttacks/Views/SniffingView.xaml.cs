@@ -1,6 +1,9 @@
-﻿using System.Net.NetworkInformation;
+﻿using System;
+using System.Net.NetworkInformation;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace LanAttacks.Views
 {
@@ -16,7 +19,14 @@ namespace LanAttacks.Views
         {
             TextBox obj = (TextBox)sender;
 
-            if (obj.Text == "0" || obj.Text == "")
+            if (obj.Text != "")
+            {
+                int number = Int32.Parse(obj.Text);
+                if (number == 0) number = 1;
+
+                obj.Text = number.ToString();
+            }
+            else
             {
                 obj.Text = "1";
             }
@@ -40,6 +50,12 @@ namespace LanAttacks.Views
             if (formattedAmountOfPackets == "1") AmountOfPackets.Text = "1";
 
             ResultLabel.Content = $"Sniffing {formattedAmountOfPackets} packets on '{networkInterfaceComboBox.Text}' with '{formattedFilterPackets}' filter ";
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
