@@ -21,6 +21,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Properties\Translations\Lang.pl.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Styles.xaml">
       <SubType>Designer</SubType>
     </Page>

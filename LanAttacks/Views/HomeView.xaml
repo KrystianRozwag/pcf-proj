@@ -1,15 +1,16 @@
 ﻿<UserControl x:Class="LanAttacks.Views.HomeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LanAttacks.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:translations="clr-namespace:LanAttacks.Properties.Translations"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="824
-             ">
+             d:DesignHeight="700"
+             d:DesignWidth="824"
+             >
     <Grid>
         <StackPanel>
-            <Grid HorizontalAlignment="Center" Height="686" Width="824">
+            <Grid Height="686" HorizontalAlignment="Center" Width="824">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
@@ -17,11 +18,11 @@
                     <RowDefinition Height="100" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Label Foreground="White" FontSize="48" FontFamily="Segoe UI, Verdana" HorizontalAlignment="Center" Grid.Row="0" Width="138">Home</Label>
-                <TextBlock  Foreground="White" FontSize="22" FontFamily="Segoe UI, Verdana" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="30,0,30,0">Welcome to LanAttacks! LanAttacks is a pentesting software that allows you to test your Local Area Network. There are 3 different types of attacks:</TextBlock>
-                <TextBlock  Foreground="White" FontSize="22" FontFamily="Segoe UI, Verdana" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="40,110,40,0">Spoofing -  it involves falsifying the source addresses of data packets to make it appear that they originate from different addresses than the actual ones. Attackers can use this technique to hide their identity or deceive network security systems.</TextBlock>
-                <TextBlock  Foreground="White" FontSize="22" FontFamily="Segoe UI, Verdana" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="40,250,40,0">Sniffing -  it refers to eavesdropping on network traffic in order to obtain sensitive information such as passwords, usernames, credit card numbers, etc. The attacker uses software to capture data packets transmitted on the network.</TextBlock>
-                <TextBlock  Foreground="White" FontSize="22" FontFamily="Segoe UI, Verdana" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="40,400,40,0">ICMP Flooding -  it involves sending a large number of Internet Control Message Protocol (ICMP) requests to a target device in order to disrupt its operation. Attackers send large amounts of ICMP packets, which can overload the network and cause system instability or failure.</TextBlock>
+                <Label Content="{x:Static translations:Lang.homeTitle}" FontFamily="Segoe UI, Verdana" FontSize="48" Foreground="White" Grid.Row="0" HorizontalAlignment="Center" x:Name="homeTitle"/>
+                <TextBlock FontFamily="Segoe UI, Verdana" FontSize="22" Foreground="White" Grid.Row="1" Margin="30,0,30,0" Text="{x:Static translations:Lang.homeDescription}" TextWrapping="WrapWithOverflow" x:Name="homeDesc"/>
+                <TextBlock FontFamily="Segoe UI, Verdana" FontSize="22" Foreground="White" Grid.Row="1" Margin="40,90,40,336" Text="{x:Static translations:Lang.spoofingDescription}" TextWrapping="WrapWithOverflow" x:Name="homeSpoofDesc"/>
+                <TextBlock FontFamily="Segoe UI, Verdana" FontSize="22" Foreground="White" Grid.Row="1" Margin="40,230,40,191" Text="{x:Static translations:Lang.sniffingDescription}" TextWrapping="WrapWithOverflow" x:Name="homeSpiffDesc"/>
+                <TextBlock FontFamily="Segoe UI, Verdana" FontSize="22" Foreground="White" Grid.Row="1" Margin="40,380,40,0" Text="{x:Static translations:Lang.icmpFloodingDescription}" TextWrapping="WrapWithOverflow" x:Name="homeICMPDesc" />
             </Grid>
         </StackPanel>
     </Grid>

@@ -1,16 +1,41 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Controls;
 
 namespace LanAttacks.Views
 {
     public partial class ICMPFloodingView : UserControl
     {
+        private readonly ObservableObject? _observableObject;
+
         public ICMPFloodingView()
         {
             InitializeComponent();
+        }
+        public ICMPFloodingView(ObservableObject observableObject)
+        {
+            InitializeComponent();
+            _observableObject = observableObject;
+            _observableObject.PropertyChanged += OnObservableObjectPropertyChanged;
+        }
+
+        private void OnObservableObjectPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (_observableObject != null && _observableObject.Language == "pl")
+            {
+                icmpNumOfPacketsToSend.Content = "Liczba pakietów do wysłania";
+                icmpDestinationIpAddress.Content = "Docelowy adres IP";
+                icmpBtn.Content = "Rozpocznij ICMP Flooding";
+            }
+            else if (_observableObject != null && _observableObject.Language == "en")
+            {
+                icmpNumOfPacketsToSend.Content = "Number of packets to send";
+                icmpDestinationIpAddress.Content = "Destination IP Address";
+                icmpBtn.Content = "Start ICMP Flooding";
+            }
         }
 
         private void AmountInput_LostFocus(object sender, RoutedEventArgs e)
@@ -68,6 +93,14 @@ namespace LanAttacks.Views
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void TextBox_focusHandler(object sender, RoutedEventArgs e)
+        {
+            if(sender != null)
+            {
+                ((TextBox)sender).SelectAll();
+            }
         }
     }
 }

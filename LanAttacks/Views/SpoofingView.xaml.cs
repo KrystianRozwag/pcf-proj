@@ -1,16 +1,47 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Controls;
 
 namespace LanAttacks.Views
 {
     public partial class SpoofingView : UserControl
     {
+        private readonly ObservableObject? _observableObject;
+
         public SpoofingView()
         {
             InitializeComponent();
+        }
+        public SpoofingView(ObservableObject observableObject)
+        {
+            InitializeComponent();
+            _observableObject = observableObject;
+            _observableObject.PropertyChanged += OnObservableObjectPropertyChanged;
+        }
+
+        private void OnObservableObjectPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Language")
+            {
+                if(_observableObject != null && _observableObject.Language == "pl")
+                {
+                    spoofNumOfPacketsToSend.Content = "Liczba pakietów do wysłania";
+                    spoofSourceIpAddress.Content = "Źródłowy adres IP";
+                    spoofDestinationIpAddress.Content = "Docelowy adres IP";
+                    spoofProtocol.Content = "Protokół sieciowy";
+                    spoofBtn.Content = "Rozpocznij Spoofing";
+                } else if(_observableObject != null && _observableObject.Language == "en")
+                {
+                    spoofNumOfPacketsToSend.Content = "Number of packets to send";
+                    spoofSourceIpAddress.Content = "Source IP Address";
+                    spoofDestinationIpAddress.Content = "Destination IP Address";
+                    spoofProtocol.Content = "Network protocol";
+                    spoofBtn.Content = "Start Spoofing";
+                }
+            }
         }
 
         private void AmountInput_LostFocus(object sender, RoutedEventArgs e)
@@ -73,6 +104,14 @@ namespace LanAttacks.Views
             string dstIpAddress = formattedDstFirstOctet + "." + formattedDstSecondOctet + "." + formattedDstThirdOctet + "." + formattedDstFourthOctet;
 
             ResultLabel.Content = $"Spoofing {Protocol.Text} protocol from {srcIpAddress} to {dstIpAddress} with {formattedAmountOfPackets} packets.";
+        }
+
+        private void TextBox_focusHandler(object sender, RoutedEventArgs e)
+        {
+            if (sender != null)
+            {
+                ((TextBox)sender).SelectAll();
+            }
         }
     }
 }
