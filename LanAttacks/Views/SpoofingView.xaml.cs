@@ -93,12 +93,9 @@ namespace LanAttacks.Views
             {
                 dynamic collections = Py.Import("SpoofingModule");
                 dynamic result = collections.spoof(srcIpAddress, dstIpAddress, Protocol.Text.ToUpper(), GetMACAddress(dstIpAddress), AmountOfPackets);
-                if(result != null)
+                if (result != null)
                 {
-                    foreach (dynamic key in result.keys())
-                    {
-                        ResultLabel.Content = ResultLabel.Content + "\n" + key + ":" + result[key];
-                    }
+                    ResultLabel.Content = ResultLabel.Content + "\n" + result;
                 }
                 else
                 {

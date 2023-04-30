@@ -53,6 +53,20 @@ namespace LanAttacks.Views
             }
         }
 
+        private string GetLocalIPAddress()
+        {
+            IPAddress[] localIPs = Dns.GetHostAddresses(Dns.GetHostName());
+
+            foreach (IPAddress address in localIPs)
+            {
+                if (address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                {
+                    return address.ToString();
+                }
+            }
+            return null;
+        }
+
         private void ICMPSubmit_Clicked(object sender, RoutedEventArgs e)
         {
 
@@ -87,12 +101,9 @@ namespace LanAttacks.Views
             using (Py.GIL())
             {
                 dynamic collections = Py.Import("SpoofingModule");
-                dynamic result = collections.spoof("192.168.1.11", dstIpAddress, "ICMP", GetMACAddress(dstIpAddress), AmountOfPackets);
+                dynamic result = collections.spoof(GetLocalIPAddress(), dstIpAddress, "ICMP", GetMACAddress(dstIpAddress), AmountOfPackets);
                 if(result != null) {
-                    foreach (dynamic key in result.keys())
-                    {
-                        ResultLabel.Content = ResultLabel.Content + "\n" + key + ":" + result[key];
-                    }
+                    ResultLabel.Content = ResultLabel.Content + "\n" + result;
                 }
                 else
                 {
