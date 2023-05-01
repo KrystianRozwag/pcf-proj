@@ -7,14 +7,44 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Net.NetworkInformation;
 using System.Net;
-
+using System.ComponentModel;
 namespace LanAttacks.Views
 {
     public partial class SpoofingView : UserControl
     {
+        private readonly ObservableObject? _observableObject;
         public SpoofingView()
         {
             InitializeComponent();
+        }
+        public SpoofingView(ObservableObject observableObject)
+        {
+            InitializeComponent();
+            _observableObject = observableObject;
+            _observableObject.PropertyChanged += OnObservableObjectPropertyChanged;
+        }
+
+        private void OnObservableObjectPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Language")
+            {
+                if (_observableObject != null && _observableObject.Language == "pl")
+                {
+                    spoofNumOfPacketsToSend.Content = "Liczba pakietów do wysłania";
+                    spoofSourceIpAddress.Content = "Źródłowy adres IP";
+                    spoofDestinationIpAddress.Content = "Docelowy adres IP";
+                    spoofProtocol.Content = "Protokół sieciowy";
+                    spoofBtn.Content = "Rozpocznij Spoofing";
+                }
+                else if (_observableObject != null && _observableObject.Language == "en")
+                {
+                    spoofNumOfPacketsToSend.Content = "Number of packets to send";
+                    spoofSourceIpAddress.Content = "Source IP Address";
+                    spoofDestinationIpAddress.Content = "Destination IP Address";
+                    spoofProtocol.Content = "Network protocol";
+                    spoofBtn.Content = "Start Spoofing";
+                }
+            }
         }
 
         private void AmountInput_LostFocus(object sender, RoutedEventArgs e)
@@ -26,7 +56,13 @@ namespace LanAttacks.Views
                 obj.Text = "1";
             }
         }
-
+        private void TextBox_focusHandler(object sender, RoutedEventArgs e)
+        {
+            if (sender != null)
+            {
+                ((TextBox)sender).SelectAll();
+            }
+        }
         private void IpInputLostFocus(object sender, RoutedEventArgs e)
         {
             TextBox obj = (TextBox)sender;

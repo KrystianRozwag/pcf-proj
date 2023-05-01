@@ -2,27 +2,66 @@
 using System.Net.NetworkInformation;
 using System.Windows;
 using System.Windows.Controls;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
+using System.Windows.Input;
+using System;
 
 namespace LanAttacks.Views
 {
     public partial class SniffingView : UserControl
     {
+        private readonly ObservableObject? _observableObject;
         public SniffingView()
         {
             InitializeComponent();
             PopulateNetworkInterfaceComboBox();
         }
+        public SniffingView(ObservableObject observableObject)
+        {
+            InitializeComponent();
+            PopulateNetworkInterfaceComboBox();
+            _observableObject = observableObject;
+            _observableObject.PropertyChanged += OnObservableObjectPropertyChanged;
+        }
 
+        private void OnObservableObjectPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (_observableObject != null && _observableObject.Language == "pl")
+            {
+                sniffNumOfPacketsToSearch.Content = "Liczba pakietów do przeszukania";
+                sniffFilterPackets.Content = "Filtr pakietów";
+                sniffNetworkInterface.Content = "Interfejs sieciowy";
+                sniffBtn.Content = "Rozpocznij Sniffing";
+            }
+            else if (_observableObject != null && _observableObject.Language == "en")
+            {
+                sniffNumOfPacketsToSearch.Content = "Number of packets to search";
+                sniffFilterPackets.Content = "Filter packets";
+                sniffNetworkInterface.Content = "Network interface";
+                sniffBtn.Content = "Start Sniffing";
+            }
+        }
         private void AmountInput_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBox obj = (TextBox)sender;
+            if (obj.Text != "")
+            {
+                int number = Int32.Parse(obj.Text);
+                if (number == 0) number = 1;
 
-            if (obj.Text == "0" || obj.Text == "")
+                obj.Text = number.ToString();
+            }
+            else
             {
                 obj.Text = "1";
             }
         }
-
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
         private void PopulateNetworkInterfaceComboBox()
         {
             NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
@@ -64,6 +103,13 @@ namespace LanAttacks.Views
 
             }
             PythonEngine.Shutdown();
+        }
+        private void TextBox_focusHandler(object sender, RoutedEventArgs e)
+        {
+            if (sender != null)
+            {
+                ((TextBox)sender).SelectAll();
+            }
         }
     }
 }

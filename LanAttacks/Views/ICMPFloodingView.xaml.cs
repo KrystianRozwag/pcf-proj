@@ -1,31 +1,46 @@
 ﻿using Python.Runtime;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
 using System.Net.Sockets;
 using System.Net;
-using System.Printing;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
-using System.IO;
-using LanAttacks.ViewModels;
 using System.Net.NetworkInformation;
 using System.Linq;
+using System.ComponentModel;
 
 namespace LanAttacks.Views
 {
     public partial class ICMPFloodingView : UserControl
     {
-
+        private readonly ObservableObject? _observableObject;
         public ICMPFloodingView()
         {
             InitializeComponent();
         }
+        public ICMPFloodingView(ObservableObject observableObject)
+        {
+            InitializeComponent();
+            _observableObject = observableObject;
+            _observableObject.PropertyChanged += OnObservableObjectPropertyChanged;
+        }
 
+        private void OnObservableObjectPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (_observableObject != null && _observableObject.Language == "pl")
+            {
+                icmpNumOfPacketsToSend.Content = "Liczba pakietów do wysłania";
+                icmpDestinationIpAddress.Content = "Docelowy adres IP";
+                icmpBtn.Content = "Rozpocznij ICMP Flooding";
+            }
+            else if (_observableObject != null && _observableObject.Language == "en")
+            {
+                icmpNumOfPacketsToSend.Content = "Number of packets to send";
+                icmpDestinationIpAddress.Content = "Destination IP Address";
+                icmpBtn.Content = "Start ICMP Flooding";
+            }
+        }
         private void AmountInput_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBox obj = (TextBox)sender;
@@ -33,6 +48,13 @@ namespace LanAttacks.Views
             if (obj.Text == "0" || obj.Text == "")
             {
                 obj.Text = "1";
+            }
+        }
+        private void TextBox_focusHandler(object sender, RoutedEventArgs e)
+        {
+            if (sender != null)
+            {
+                ((TextBox)sender).SelectAll();
             }
         }
 

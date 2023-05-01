@@ -12,6 +12,11 @@
         },
         "runtime": {
           "LanAttacks.dll": {}
+        },
+        "resources": {
+          "pl/LanAttacks.resources.dll": {
+            "locale": "pl"
+          }
         }
       },
       "Microsoft.CSharp/4.7.0": {},

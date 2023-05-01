@@ -1,40 +1,48 @@
 ﻿<Window x:Class="LanAttacks.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LanAttacks"
-        xmlns:viewmodels="clr-namespace:LanAttacks.ViewModels"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:translations="clr-namespace:LanAttacks.Properties.Translations"
         xmlns:views="clr-namespace:LanAttacks.Views"
         mc:Ignorable="d"
-        Title="LAN Attacks" Height="700" Width="1024" ResizeMode="NoResize">
+        Height="700" ResizeMode="NoResize" Title="LAN Attacks" Width="1024">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <DataTemplate x:Name="homeViewTemplate" DataType="{x:Type viewmodels:HomeViewModel}">
+            <DataTemplate DataType="{x:Type views:HomeView}" x:Name="homeViewTemplate">
                 <views:HomeView DataContext="{Binding}"/>
             </DataTemplate>
-            <DataTemplate x:Name="spoofingViewTemplate" DataType="{x:Type viewmodels:SpoofingViewModel}">
+            <DataTemplate DataType="{x:Type views:SpoofingView}" x:Name="spoofingViewTemplate">
                 <views:SpoofingView DataContext="{Binding}"/>
             </DataTemplate>
-            <DataTemplate x:Name="sniffingViewTemplate" DataType="{x:Type viewmodels:SniffingViewModel}">
+            <DataTemplate DataType="{x:Type views:SniffingView}" x:Name="sniffingViewTemplate">
                 <views:SniffingView DataContext="{Binding}"/>
             </DataTemplate>
-            <DataTemplate x:Name="icmpFloodingViewTemplate" DataType="{x:Type viewmodels:ICMPFloodingViewModel}">
+            <DataTemplate DataType="{x:Type views:ICMPFloodingView}" x:Name="icmpFloodingViewTemplate">
                 <views:ICMPFloodingView DataContext="{Binding}"/>
             </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Border Background="#1f1d2b" RenderTransformOrigin="0.5,0.5" Margin="0,0,797,0" Width="230">
-            <StackPanel Margin="0,0,30,0">
-                <TextBlock Text="LAN Attacks" FontSize="28" Margin="20,40,10,0" Foreground="White" RenderTransformOrigin="0.503,1.834" FontFamily="Segoe UI, Verdana" />
-                <Button Style="{StaticResource MenuBtnStyles}" FontSize="20" FontFamily="Segoe UI, Verdana" Content="Home" Margin="0,150,0,0" Height="50"  Width="200" Click="HomeView_Clicked" />
-                <Button Style="{StaticResource MenuBtnStyles}" FontSize="20" FontFamily="Segoe UI, Verdana" Content="Spoofing" Margin="0,0,0,0" Height="50"  Width="200" Click="SpoofingView_Clicked" />
-                <Button Style="{StaticResource MenuBtnStyles}" FontSize="20" FontFamily="Segoe UI, Verdana" Content="Sniffing" Margin="0,0,0,0" Height="50" Width="200" Click="SniffingView_Clicked" />
-                <Button Style="{StaticResource MenuBtnStyles}" FontSize="20" FontFamily="Segoe UI, Verdana" Content="ICMP Flooding" Margin="0,0,0,0" Height="50" Width="200" Click="ICMPFloodingView_Clicked" />
+        <Border Background="#1f1d2b" Margin="0,0,802,0" RenderTransformOrigin="0.5,0.5" >
+            <StackPanel>
+                <StackPanel Height="431" Width="200">
+                    <TextBlock FontFamily="Segoe UI, Verdana" FontSize="28" Foreground="White" Margin="20,40,10,0" RenderTransformOrigin="0.503,1.834" Text="LAN Attacks" />
+                    <Button Click="HomeView_Clicked" Content="{x:Static translations:Lang.navHome}" Margin="0,150,0,0" Style="{StaticResource MenuBtnStyles}" x:Name="homeNav" />
+                    <Button Click="SpoofingView_Clicked" Content="Spoofing" Style="{StaticResource MenuBtnStyles}" x:Name="spoofNav" />
+                    <Button Click="SniffingView_Clicked" Content="Sniffing" Style="{StaticResource MenuBtnStyles}" x:Name="sniffNav" />
+                    <Button Click="ICMPFloodingView_Clicked" Content="ICMP Flooding" Style="{StaticResource MenuBtnStyles}" x:Name="icmpNav" />
+                </StackPanel>
+                <StackPanel Margin="0,140,0,0">
+                    <Label Content="{x:Static translations:Lang.language}" FontSize="20" Foreground="#FFA5A5AA" HorizontalAlignment="Center" x:Name="languageOpt" />
+                    <ComboBox  FlowDirection="RightToLeft" FontSize="20" Height="30" Margin="0,6,0,0" SelectionChanged="ChangeLanguageHandler" Width="60" >
+                        <ComboBoxItem Content="EN" IsSelected="True" />
+                        <ComboBoxItem Content="PL"/>
+                    </ComboBox>
+                </StackPanel>
             </StackPanel>
         </Border>
         <Border Background="#252836" Margin="200,0,0,0">

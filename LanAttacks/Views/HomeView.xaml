@@ -1,15 +1,16 @@
 ﻿<UserControl x:Class="LanAttacks.Views.HomeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LanAttacks.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:translations="clr-namespace:LanAttacks.Properties.Translations"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="824
-             ">
+             d:DesignHeight="700"
+             d:DesignWidth="824"
+             >
     <Grid>
         <StackPanel>
-            <Grid HorizontalAlignment="Center" Height="686" Width="824">
+            <Grid Height="686" HorizontalAlignment="Center" Width="824">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
@@ -17,11 +18,11 @@
                     <RowDefinition Height="100" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Label Foreground="White" FontSize="48" FontFamily="Segoe UI, Verdana" HorizontalAlignment="Center" Grid.Row="0" Width="138">Home</Label>
-                <TextBlock  Foreground="White" FontSize="24" FontFamily="Segoe UI, Verdana" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="30,0,30,0">Welcome to LanAttacks! LanAttacks is a pentesting software that allows you to test your Local Area Network. There are 3 different types of attacks:</TextBlock>
-                <TextBlock  Foreground="White" FontSize="24" FontFamily="Segoe UI, Verdana" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="40,110,40,0">Spoofing -  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec adipiscing nulla quis libero egestas lobortis. Duis blandit imperdiet ornare. Nulla ac arcu ut purus placerat congue. Integer pretium fermentum.</TextBlock>
-                <TextBlock  Foreground="White" FontSize="24" FontFamily="Segoe UI, Verdana" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="40,250,40,0">Sniffing -  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec adipiscing nulla quis libero egestas lobortis. Duis blandit imperdiet ornare. Nulla ac arcu ut purus placerat congue. Integer pretium fermentum gravida.</TextBlock>
-                <TextBlock  Foreground="White" FontSize="24" FontFamily="Segoe UI, Verdana" Grid.Row="1" TextWrapping="WrapWithOverflow" Margin="40,400,40,0">ICMP Flooding -  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec adipiscing nulla quis libero egestas lobortis. Duis blandit imperdiet ornare. Nulla ac arcu ut purus placerat congue. Integer pretium fermentum gravida.</TextBlock>
+                <Label Content="{x:Static translations:Lang.homeTitle}" FontFamily="Segoe UI, Verdana" FontSize="48" Foreground="White" Grid.Row="0" HorizontalAlignment="Center" x:Name="homeTitle"/>
+                <TextBlock FontFamily="Segoe UI, Verdana" FontSize="22" Foreground="White" Grid.Row="1" Margin="30,0,30,0" Text="{x:Static translations:Lang.homeDescription}" TextWrapping="WrapWithOverflow" x:Name="homeDesc"/>
+                <TextBlock FontFamily="Segoe UI, Verdana" FontSize="22" Foreground="White" Grid.Row="1" Margin="40,90,40,336" Text="{x:Static translations:Lang.spoofingDescription}" TextWrapping="WrapWithOverflow" x:Name="homeSpoofDesc"/>
+                <TextBlock FontFamily="Segoe UI, Verdana" FontSize="22" Foreground="White" Grid.Row="1" Margin="40,230,40,191" Text="{x:Static translations:Lang.sniffingDescription}" TextWrapping="WrapWithOverflow" x:Name="homeSpiffDesc"/>
+                <TextBlock FontFamily="Segoe UI, Verdana" FontSize="22" Foreground="White" Grid.Row="1" Margin="40,380,40,0" Text="{x:Static translations:Lang.icmpFloodingDescription}" TextWrapping="WrapWithOverflow" x:Name="homeICMPDesc" />
             </Grid>
         </StackPanel>
     </Grid>
