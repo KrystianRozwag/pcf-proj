@@ -53,8 +53,7 @@
             <ComboBox FlowDirection="RightToLeft" FontFamily="Segoe UI, Verdana" FontSize="20" Height="30" InputScope="Number" Margin="40,0,0,0" Name="Protocol" Width="100">
                 <ComboBoxItem IsSelected="True">TCP/IP</ComboBoxItem>
                 <ComboBoxItem>ARP</ComboBoxItem>
-                <ComboBoxItem>DNS</ComboBoxItem>
-                <ComboBoxItem>GPS</ComboBoxItem>
+                <ComboBoxItem>UDP</ComboBoxItem>
             </ComboBox>
         </StackPanel>
         <Button Click="SpoofingSubmit_Clicked" Content="{x:Static translations:Lang.startSpoofing}" FontSize="20" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" Padding="10,5,10,5" VerticalAlignment="Top" x:Name="spoofBtn" />

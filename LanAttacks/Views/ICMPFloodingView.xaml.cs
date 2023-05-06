@@ -45,10 +45,20 @@ namespace LanAttacks.Views
         {
             TextBox obj = (TextBox)sender;
 
-            if (obj.Text == "0" || obj.Text == "")
+            if (obj.Text != "")
             {
-                obj.Text = "1";
+                if (obj.Text == "0") obj.Text = "1";
+                else
+                {
+                    int packetNumber = Int32.Parse(obj.Text);
+                    int updatedNumber = packetNumber;
+
+                    if (packetNumber > 100) updatedNumber = 100;
+
+                    obj.Text = updatedNumber.ToString();
+                }
             }
+            else obj.Text = "1";
         }
         private void TextBox_focusHandler(object sender, RoutedEventArgs e)
         {
@@ -129,7 +139,7 @@ namespace LanAttacks.Views
                 }
                 else
                 {
-                    ResultLabel.Content = "This dst host does not exist.";
+                    ResultLabel.Content = "This destination host does not exist.";
                 }
                 
 

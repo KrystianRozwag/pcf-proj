@@ -29,7 +29,7 @@ namespace LanAttacks.Views
         {
             if (_observableObject != null && _observableObject.Language == "pl")
             {
-                sniffNumOfPacketsToSearch.Content = "Liczba pakietów do przeszukania";
+                sniffNumOfPacketsToSearch.Content = "Liczba pakietów do przechwycenia";
                 sniffFilterPackets.Content = "Filtr pakietów";
                 sniffNetworkInterface.Content = "Interfejs sieciowy";
                 sniffBtn.Content = "Rozpocznij Sniffing";
@@ -47,15 +47,18 @@ namespace LanAttacks.Views
             TextBox obj = (TextBox)sender;
             if (obj.Text != "")
             {
-                int number = Int32.Parse(obj.Text);
-                if (number == 0) number = 1;
+                if (obj.Text == "0") obj.Text = "1";
+                else
+                {
+                    int packetNumber = Int32.Parse(obj.Text);
+                    int updatedNumber = packetNumber;
 
-                obj.Text = number.ToString();
+                    if (packetNumber > 100) updatedNumber = 100;
+
+                    obj.Text = updatedNumber.ToString();
+                }
             }
-            else
-            {
-                obj.Text = "1";
-            }
+            else obj.Text = "1";
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
@@ -98,7 +101,7 @@ namespace LanAttacks.Views
                 }
                 else
                 {
-                    ResultLabel.Content = "This dst host does not exist.";
+                    ResultLabel.Content = "Sniffing attack has failed.";
                 }
 
             }
