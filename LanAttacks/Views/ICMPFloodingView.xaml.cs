@@ -68,23 +68,6 @@ namespace LanAttacks.Views
             }
         }
 
-        private string GetMACAddress(string ipAddress)
-        {
-            var nic = NetworkInterface.GetAllNetworkInterfaces()
-            .FirstOrDefault(n => n.GetIPProperties().UnicastAddresses
-                .Any(a => a.Address.Equals(IPAddress.Parse(ipAddress))));
-
-            if (nic != null)
-            {
-                byte[] macAddressBytes = nic.GetPhysicalAddress().GetAddressBytes();
-                return BitConverter.ToString(macAddressBytes);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         private string GetLocalIPAddress()
         {
             IPAddress[] localIPs = Dns.GetHostAddresses(Dns.GetHostName());
@@ -133,7 +116,7 @@ namespace LanAttacks.Views
             using (Py.GIL())
             {
                 dynamic collections = Py.Import("SpoofingModule");
-                dynamic result = collections.spoof(GetLocalIPAddress(), dstIpAddress, "ICMP", GetMACAddress(dstIpAddress), AmountOfPackets);
+                dynamic result = collections.spoof(GetLocalIPAddress(), dstIpAddress, "ICMP", AmountOfPackets);
                 if(result != null) {
                     ResultLabel.Content = ResultLabel.Content + "\n" + result;
                 }

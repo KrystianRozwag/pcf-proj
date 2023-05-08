@@ -97,23 +97,6 @@ namespace LanAttacks.Views
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private string GetMACAddress(string ipAddress)
-        {
-            var nic = NetworkInterface.GetAllNetworkInterfaces()
-            .FirstOrDefault(n => n.GetIPProperties().UnicastAddresses
-                .Any(a => a.Address.Equals(IPAddress.Parse(ipAddress))));
-
-            if (nic != null)
-            {
-                byte[] macAddressBytes = nic.GetPhysicalAddress().GetAddressBytes();
-                return BitConverter.ToString(macAddressBytes);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         private void SpoofingSubmit_Clicked(object sender, RoutedEventArgs e)
         {
             string formattedSrcFirstOctet = SrcFirstOctet.Text.Trim() != "" ? SrcFirstOctet.Text : "0";
@@ -138,7 +121,7 @@ namespace LanAttacks.Views
             using (Py.GIL())
             {
                 dynamic collections = Py.Import("SpoofingModule");
-                dynamic result = collections.spoof(srcIpAddress, dstIpAddress, Protocol.Text.ToUpper(), GetMACAddress(dstIpAddress), AmountOfPackets);
+                dynamic result = collections.spoof(srcIpAddress, dstIpAddress, Protocol.Text.ToUpper(), AmountOfPackets);
                 if (result != null)
                 {
                     ResultLabel.Content = ResultLabel.Content + "\n" + result;
