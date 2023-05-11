@@ -50,5 +50,6 @@ Install dependencies
   Pythonnet module (pip install pythonnet and in NuGet packages)
   .NET 6.0
 ```
-In order to work with the application. In path ..\LanAttacks\bin\Debug\net6.0-windows change inside of file python3_path.txt to correct Python 3.10 dll's filepath. Without this step, user will not be able to run the project.
+In order to work with the application. In path ..\LanAttacks\bin\Debug\net6.0-windows change inside of the file python3_path.txt to the correct Python 3.10 dll's filepath. Without this step, user will not be able to run the project.
+
 Run the application
