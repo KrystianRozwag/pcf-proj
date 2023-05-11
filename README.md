@@ -12,6 +12,7 @@ To use this application, you must have the following prerequisites installed on 
     WINPCAP
     Scapy module (pip install scapy)
     Pythonnet module (pip install pythonnet and in NuGet packages)
+    .NET 6.0
 
 Clone the repository and open the solution in Visual Studio. Make sure to set the startup project to "Lan Attacks Tool".
 ## Usage
