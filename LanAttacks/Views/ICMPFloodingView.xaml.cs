@@ -110,8 +110,8 @@ namespace LanAttacks.Views
 
 
             // Set the module search path for pythonnet to include the directory of the executing assembly
-            
-            //ResultLabel.Content = $"ICMP Flooding on the {dstIpAddress} with {formattedAmountOfPackets} packets.";
+
+            ResultLabel.Content = $"Flooding in progress ";
             PythonEngine.Initialize();
             using (Py.GIL())
             {

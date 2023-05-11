@@ -116,7 +116,7 @@ namespace LanAttacks.Views
             string srcIpAddress = formattedSrcFirstOctet + "." + formattedSrcSecondOctet + "." + formattedSrcThirdOctet + "." + formattedSrcFourthOctet;
             string dstIpAddress = formattedDstFirstOctet + "." + formattedDstSecondOctet + "." + formattedDstThirdOctet + "." + formattedDstFourthOctet;
 
-            //ResultLabel.Content = $"Spoofing {Protocol.Text} protocol from {srcIpAddress} to {dstIpAddress} with {formattedAmountOfPackets} packets.";
+            ResultLabel.Content = $"Spoofing in progress ";
             PythonEngine.Initialize();
             using (Py.GIL())
             {

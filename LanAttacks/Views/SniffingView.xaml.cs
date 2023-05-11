@@ -77,6 +77,7 @@ namespace LanAttacks.Views
 
         private void SniffingSubmit_Clicked(object sender, RoutedEventArgs e)
         {
+            ResultLabel.Content = $"Sniffing in progress ";
             string formattedAmountOfPackets = AmountOfPackets.Text.Trim() != "" ? AmountOfPackets.Text : "1";
             string formattedInterface = networkInterfaceComboBox.Text;
             
@@ -85,7 +86,7 @@ namespace LanAttacks.Views
 
             if (formattedAmountOfPackets == "1") AmountOfPackets.Text = "1";
 
-            //ResultLabel.Content = $"Sniffing {formattedAmountOfPackets} packets on '{networkInterfaceComboBox.Text}' with '{formattedFilterPackets}' filter ";
+
 
             PythonEngine.Initialize();
             using (Py.GIL())
